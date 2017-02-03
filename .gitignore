@@ -16,3 +16,9 @@ wp-content/plugins/hello.php
 /sitemap.xml
 /sitemap.xml.gz
 
+
+/arctic+snow/
+/arctic+ice/
+
+*/wp-config.php
+**/wp-config.php

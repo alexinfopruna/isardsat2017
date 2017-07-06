@@ -1,6 +1,6 @@
 <?php
 
-class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
+class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User implements IWPML_St_Upgrade_Command {
 	
 
 	private $translations = array();
@@ -13,6 +13,10 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 		foreach( $active_languages as $lang ) {
 			$this->active_languages[] = $lang['code'];
 		}
+	}
+
+	public static function get_command_id() {
+		return __CLASS__;
 	}
 	
 	public function run() {
@@ -30,7 +34,7 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 		?>
 			<div id="wpml-st-upgrade-migrate-originals" class="update-nag" style="display:block">
 				<p>
-					<?php printf(__('WPML needs to update the database. This update will help improve WPML\'s performance when fetching translated strings.', 'wpml-string-translation') ); ?>
+					<?php esc_html_e( "WPML needs to update the database. This update will help improve WPML's performance when fetching translated strings.", 'wpml-string-translation' ); ?>
 					<br /><br />
 					<button class="wpml-st-upgrade-migrate-originals"><?php esc_html_e( 'Update Now', 'wpml-string-translation' ); ?></button> <span class="spinner" style="float: none"></span>
 				</p>
@@ -38,7 +42,7 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 			</div>
 			<div id="wpml-st-upgrade-migrate-originals-complete" class="update-nag" style="display:none">
 				<p>
-					<?php printf(__('The database has been updated.', 'wpml-string-translation') ); ?>
+					<?php esc_html_e( 'The database has been updated.', 'wpml-string-translation' ); ?>
 					<br /><br />
 					<button class="wpml-st-upgrade-migrate-originals-close"><?php esc_html_e( 'Close', 'wpml-string-translation' ); ?></button>
 				</p>
@@ -80,7 +84,10 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 
 		return true;
 	}
-	
+
+	public function run_frontend() {}
+
+
 	private function is_migration_required() {
 		$query = "
 					SELECT id

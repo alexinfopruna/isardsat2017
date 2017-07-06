@@ -56,7 +56,7 @@ class WPML_Basket_Tab_Ajax {
 		list( $has_error, $data, $error ) = $this->networking->commit_basket_chunk( $batch, $basket_name, $translators );
 
 		if ( $has_error === true ) {
-			wp_send_json_error( self::sanitize_errors( $error ) );
+			wp_send_json_error( $data );
 		} else {
 			wp_send_json_success( $data );
 		}
@@ -101,6 +101,8 @@ class WPML_Basket_Tab_Ajax {
 			$response = false;
 			$errors[] = $e->getMessage();
 		}
+
+		do_action( 'wpml_tm_basket_committed' );
 
 		$this->send_json_response( $response, $errors );
 	}

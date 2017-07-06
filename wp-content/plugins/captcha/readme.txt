@@ -1,10 +1,10 @@
 === Captcha by BestWebSoft ===
 Contributors: bestwebsoft
-Donate link: http://bestwebsoft.com/donate/
+Donate link: https://bestwebsoft.com/donate/
 Tags: captcha, capcha, security, spam blocker, simple captcha, antispam, protection, text captcha, captcha numbers, captcha plugin, web form protection, captcha protection
 Requires at least: 3.8
-Tested up to: 4.6.1
-Stable tag: 4.2.6
+Tested up to: 4.7.3
+Stable tag: 4.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Captcha plugin is the best security solution that protects your Wordpress website forms from spam entries by means of math logic. It can be used for login, registration, password recovery, comments and popular contact forms.
 
-Users are required to complete the math equation before the form can be submitted. You can configure captcha complexity using three basic maths actions such as add, subtract and multiply. Stop spam now!
+Users are required to complete the math equation before the form can be submitted. You can configure captcha complexity using three basic maths actions such as add, subtract and multiply.
 
-http://www.youtube.com/watch?v=nlcCKSxu_Kk
+Stop spam now!
+
+https://www.youtube.com/watch?v=nlcCKSxu_Kk
 
 = Free Features =
 
@@ -25,11 +27,15 @@ http://www.youtube.com/watch?v=nlcCKSxu_Kk
 	* Registration form
 	* Reset password form
 	* Comments form
-	* [Contact Form by BestWebSoft](http://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=7f973058ee3bd3a18934b5e13b857d6f)
+	* [Contact Form](https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=7f973058ee3bd3a18934b5e13b857d6f)
 	* Custom form
+* Choose Captcha type:
+	* Character Recognition
+	* Simple math actions such as addition, subtraction, and multiplication
 * Enhance captcha protection with:
-	* Letters, numbers and images
-	* Simple math actions such as add, subtract and multiply
+	* Letters
+	* Numbers
+	* Images
 * Hide captcha for:
 	* Registered users in comments form
 	* Whitelisted IP addresses
@@ -37,41 +43,48 @@ http://www.youtube.com/watch?v=nlcCKSxu_Kk
 * Refresh captcha option
 * Image packages with hand-drawn digits
 * Edit captcha title and notifications
-* Merge IP addresses from [Limit Attempts by BestWebSoft](http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=c6b924d096b75a288daf0e49a58f93c2) plugin with Captcha whitelist
+* Merge IP addresses from [Limit Attempts](https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=c6b924d096b75a288daf0e49a58f93c2) plugin with Captcha whitelist
 * Add custom code via plugin settings page
 * Compatible with latest WordPress version
 * Incredibly simple settings for fast setup without modifying code
 * Detailed step-by-step documentations and videos
-* Multi-lingual (39+ languages) and RTL ready
+* Multi-lingual and RTL ready
 
 > **Pro Features**
 >
 > All features from Free version included plus:
 >
-> * Contact Form 7 compatible (since v 3.4)
-> * BuddyPress compatible: registration, comments and create a group forms
-> * WooCommerce compatible: login form
-> * [Subscriber by BestWebSoft](http://bestwebsoft.com/products/wordpress/plugins/subscriber/?k=ac02c12d6e17bc91f4cc636eec0a0348) compatible
-> * Use multisite network to configure sub websites
+> * Compatible with Contact Form 7 (since v 3.4)
+> * Compatible with BuddyPress:
+>	* Registration form
+>	* Comments form
+>	* Create a Group form
+> * Compatible with WooCommerce:
+>	* Login form
+>	* Register form
+>	* Lost password form
+>	* Checkout billing form
+> * Compatible with  [Subscriber](https://bestwebsoft.com/products/wordpress/plugins/subscriber/?k=ac02c12d6e17bc91f4cc636eec0a0348)
+> * Configure all subsites on the network
 > * Captcha submission time limit for separate forms
 > * Add and enable unlimited number of image packages at the same time
-> * Get answer to your support question within one business day ([Support Policy](http://bestwebsoft.com/support-policy/))
+> * Get answer to your support question within one business day ([Support Policy](https://bestwebsoft.com/support-policy/))
 >
-> [Upgrade to Pro Now](http://bestwebsoft.com/products/wordpress/plugins/captcha/?k=2d2d85a3c277bf3489697c9a9ff2d352)
+> [Upgrade to Pro Now](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=2d2d85a3c277bf3489697c9a9ff2d352)
 
-If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](http://support.bestwebsoft.com/hc/en-us/requests/new)
+If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](https://support.bestwebsoft.com/hc/en-us/requests/new)
 
 = Documentation & Videos =
 
-* [[Doc] How to Use](https://docs.google.com/document/d/11_TUSAjMjG7hLa53lmyTZ1xox03hNlEA4tRmllFep3I/edit)
-* [[Doc] Installation](https://docs.google.com/document/d/1DN2yYCvDyK2LqmbWw6xmUNLbb0awOVDZ_dOgIXod-Jw/)
-* [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/1HGnvyKzsJM1FEIWFkUQydw49ClsweOrlQHTgSKKIu3Q/)
+* [[Doc] How to Use](https://docs.google.com/document/d/11_TUSAjMjG7hLa53lmyTZ1xox03hNlEA4tRmllFep3I/)
+* [[Doc] Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
+* [[Doc] Purchase](https://docs.google.com/document/d/1EUdBVvnm7IHZ6y0DNyldZypUQKpB8UVPToSc_LdOYQI/)
 * [[Video] Purchase, Installation, Configuration Tutorial](https://www.youtube.com/watch?v=r0Noz2bYAq8)
-* [[Video] Instruction on Installation](https://www.youtube.com/watch?v=qsfLTcSo5Ok)
+* [[Video] Installation Instruction](https://www.youtube.com/watch?v=qsfLTcSo5Ok)
 
 = Help & Support =
 
-Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <http://support.bestwebsoft.com/>
+Visit our Help Center if you have any questions, our friendly Support Team is happy to help - <https://support.bestwebsoft.com/>
 
 = Translation =
 
@@ -81,10 +94,10 @@ Visit our Help Center if you have any questions, our friendly Support Team is ha
 * Brazilian Portuguese (pt_BR) (thanks to [Breno Jacinto](mailto:brenojac@gmail.com), www.iconis.org.br)
 * Bulgarian (bg_BG) (thanks to [Nick](mailto:paharaman@gmail.com))
 * Catalan (ca) (thanks to [Psiete](mailto:psiete@gmail.com))
-* Chinese (zh_CN) (thanks to <a href="mailto:416441872@qq.com">TIM</a>)
+* Chinese (zh_CN) (thanks to [TIM(mailto:416441872@qq.com)], [Jack Chen](email: mailto:beijingtours@foxmail.com), www.jackchen.im)
 * Taiwan (zh_TW) (thanks to [Kaiconan](mailto:ch.unk.ai.ma.o@gmail.com))
 * Croatian (hr) (thanks to [Daniel](mailto:daniel@croteh.com))
-* Czech (cs_CZ) (thanks to [Crysman](mailto:crysman@seznam.cz))
+* Czech (cs_CZ) (thanks to [Michal Kučera](mailto:kucerami@gmail.com) www.n0lim.it)
 * Danish (da_DK) (thanks to Byrial Ole Jensed)
 * Dutch (nl_NL) (thanks to [Bart Duineveld](mailto:byrial@vip.cybercity.dk))
 * Estonian (et) (thanks to Ahto Tanner)
@@ -116,19 +129,13 @@ Visit our Help Center if you have any questions, our friendly Support Team is ha
 * Ukrainian (uk)
 * Vietnamese (vi_VN) (thanks to NDT Solutions)
 
-Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](http://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
+Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](https://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](https://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](https://www.poedit.net/download.php).
 
 = Recommended Plugins =
 
-* [Limit Attempts](http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=c6b924d096b75a288daf0e49a58f93c2) - Limit rate of login attempts to Wordpress website and block IP addresses temporarily. Protect against brute force attacks. Restrict login by IP access using white- and blacklists. Advanced control of user activity.
-* [Updater](http://bestwebsoft.com/products/wordpress/plugins/updater/?k=0864088de1701a5e104ffb77c6d7011c) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
-* [Contact Form](http://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=7f973058ee3bd3a18934b5e13b857d6f) - Add contact form to your WordPress website
-
-= Donate =
-
-Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
-
-[Donate Now](http://bestwebsoft.com/donate/)
+* [Limit Attempts](https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=c6b924d096b75a288daf0e49a58f93c2) - Limit rate of login attempts to Wordpress website and block IP addresses temporarily. Protect against brute force attacks. Restrict login by IP access using white- and blacklists. Advanced control of user activity.
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=0864088de1701a5e104ffb77c6d7011c) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Contact Form](https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=7f973058ee3bd3a18934b5e13b857d6f) - Add contact form to your WordPress website
 
 == Installation ==
 
@@ -138,7 +145,7 @@ Donations play an important role in supporting open-source projects. We greatly 
 
 [View a Step-by-step Instruction on Captcha Installation](https://docs.google.com/document/d/1DN2yYCvDyK2LqmbWw6xmUNLbb0awOVDZ_dOgIXod-Jw/edit).
 
-http://www.youtube.com/watch?v=qsfLTcSo5Ok
+https://www.youtube.com/watch?v=qsfLTcSo5Ok
 
 == Frequently Asked Questions ==
 
@@ -205,7 +212,7 @@ If there is a variable in the check function responsible for the errors output, 
 = I got the message "On your site uses functions ... that are deprecated". What should I do? =
 
 Starting with version 4.2.3, we have changed the functionality for faster and more correct plugin work.
-You need to replace the output and response checking for the CAPTCHA in your form according to the instruction by the link <http://support.bestwebsoft.com/hc/en-us/articles/202353439> or the appropriate point in the FAQ (see "I would like to add Captcha to the custom form on my website. How can I do this? ").
+You need to replace the output and response checking for the CAPTCHA in your form according to the instruction by the link <https://support.bestwebsoft.com/hc/en-us/articles/202353439> or the appropriate point in the FAQ (see "I would like to add Captcha to the custom form on my website. How can I do this? ").
 
 After making changes, simply close the message in the admin panel.
 
@@ -220,7 +227,7 @@ In case there is no such hook in the comments file of your theme, then, unfortun
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
-Please make sure that the problem hasn't been discussed yet on our forum (<http://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
+Please make sure that the problem hasn't been discussed yet on our forum (<https://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
 
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
@@ -239,6 +246,23 @@ Please make sure that the problem hasn't been discussed yet on our forum (<http:
 8. Captcha Whitelist.
 
 == Changelog ==
+
+= V4.3.0 - 14.04.2017 =
+* Bugfix : Multiple Cross-Site Scripting (XSS) vulnerability was fixed.
+* Update : The French and Czech language files have been updated.
+
+= V4.2.9 - 07.03.2017 =
+* NEW : Character recognition type was added.
+* Update : The Taiwan language file has been updated.
+
+= V4.2.8 - 15.12.2016 =
+* Update : The Chinese language file has been updated.
+
+= V4.2.7 - 14.11.2016 =
+* Update : The French language file has been updated.
+* Pro : An ability to edit the reason of adding to whitelist has been added.
+* Pro : The compatibility with new Limit Attempts by BestWebSoft version and WooCommerce forms has been updated.
+* Pro : Captcha checking on blog signup page has been added.
 
 = V4.2.6 - 30.09.2016 =
 * NEW : The Belarusian language file has been added.
@@ -644,6 +668,18 @@ Please make sure that the problem hasn't been discussed yet on our forum (<http:
 * Select functionality of mathematical actions and level of their difficulty are implemented.
 
 == Upgrade Notice ==
+
+= V4.3.0 =
+* Bugs fixed.
+
+= V4.2.9 =
+* New features added.
+
+= V4.2.8 =
+* Languages updated.
+
+= V4.2.7 =
+* Languages updated.
 
 = V4.2.6 =
 * New languages added.

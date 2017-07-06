@@ -12,14 +12,15 @@
  */
 if ( ! function_exists( 'cptch_get_default_options' ) ) {
 	function cptch_get_default_options() {
-		global $cptch_plugin_info, $cptch_db_version;
+		global $cptch_plugin_info;
 
 		$default_options = array(
 			'plugin_option_version'        => $cptch_plugin_info["Version"],
-			'plugin_db_version'            => $cptch_db_version,
 			'str_key'                      => array( 'time' => '', 'key' => '' ),
+			'type'							=> 'math_actions',
 			'math_actions'                 => array( 'plus', 'minus', 'multiplications' ),
-			'operand_format'               => array( 'numbers', 'words' /* but not 'images' */ ),
+			'operand_format'               => array( 'numbers', 'words', 'images' ),
+			'images_count'					=> 5,
 			'title'                        => '',
 			'required_symbol'              => '*',
 			'display_reload_button'        => true,
@@ -31,18 +32,12 @@ if ( ! function_exists( 'cptch_get_default_options' ) ) {
 			'wrong_answer'                 => __( 'Please enter a valid CAPTCHA value.', 'captcha' ),
 			'time_limit_off'               => __( 'Time limit is exhausted. Please enter a CAPTCHA value again.', 'captcha' ),
 			'time_limit_off_notice'        => __( 'Time limit is exhausted. Please reload the CAPTCHA.', 'captcha' ),
-			'whitelist_message'            => __( 'You are in the whitelist', 'captcha' ),
+			'whitelist_message'            => __( 'You are in the whitelist.', 'captcha' ),
 			'load_via_ajax'                => false,
 			'use_limit_attempts_whitelist' => false,
 			'display_settings_notice'      => 1,
 			'suggest_feature_banner'       => 1
 		);
-
-		/**
-		 * @deprecated since 4.2.3
-		 * @todo remove after 1.03.2017
-		 */
-		$default_options = array_merge( $default_options, cptch_get_not_removable_options( false ) );
 
 		$forms = cptch_get_default_forms();
 
@@ -97,14 +92,6 @@ if ( ! function_exists( 'cptch_parse_options' ) ) {
 
 		$new_options = cptch_merge_recursive( $default_options, $old_options );
 
-		/**
-		 * Don`t remove some options to make an compatibility with old
-		 * Contact Form an Subscriber plugins versions
-		 * @deprecated since 4.2.3
-		 * @todo remove after 1.03.2017
-		 */
-		$not_removable = cptch_get_not_removable_options();
-
 		/* Replace old option fields names by new */
 		$args = array(
 			'str_key'               => array( 'cptch_str_key' ),
@@ -121,13 +108,6 @@ if ( ! function_exists( 'cptch_parse_options' ) ) {
 			foreach ( $old_fields as $old_field ) {
 				if ( isset( $old_options[ $old_field ] ) ) {
 					$new_options[ $new_field ] = $old_options[ $old_field ];
-
-					/**
-					 * @todo remove next two strings after 1.03.2017
-					 */
-					if ( in_array( $old_field, $not_removable ) )
-						continue;
-
 					if ( isset( $new_options[ $old_field ] ) )
 						unset( $new_options[ $old_field ] );
 					break;
@@ -197,12 +177,6 @@ if ( ! function_exists( 'cptch_parse_options' ) ) {
 					if ( isset( $old_options[ $old_field ] ) ) {
 						$new_options['forms'][ $form ][ $new_fields ] = $old_options[ $old_field ];
 
-						/**
-						 * @todo remove next two strings after 1.03.2017
-						 */
-						if ( in_array( $old_field, $not_removable ) )
-							continue;
-
 						if ( isset( $new_options[ $old_field ] ) )
 							unset( $new_options[ $old_field ] );
 					}
@@ -229,7 +203,8 @@ if ( ! function_exists( 'cptch_parse_options' ) ) {
 if ( ! function_exists( 'cptch_merge_recursive' ) ) {
 	function cptch_merge_recursive( $base, $replacement ) {
 
-		if ( ! is_array( $base ) )
+		/* array_keys( $replacement ) == range( 0, count( $replacement ) - 1 ) - checking if array is numerical */
+		if ( ! is_array( $base ) || empty( $replacement ) || array_keys( $replacement ) == range( 0, count( $replacement ) - 1 ) )
 			return $replacement;
 
 		foreach ( $replacement as $key => $value ) {
@@ -337,7 +312,7 @@ if ( ! function_exists( 'cptch_get_plugin' ) ) {
 if ( ! function_exists( 'cptch_get_plugin_link' ) ) {
 	function cptch_get_plugin_link( $plugin ) {
 		global $wp_version, $cptch_plugin_info;
-		$bws_link = "http://bestwebsoft.com/products/wordpress/plugins/%1s/?k=%2s&pn=72&v={$cptch_plugin_info["Version"]}&wp_v={$wp_version}/";
+		$bws_link = "https://bestwebsoft.com/products/wordpress/plugins/%1s/?k=%2s&pn=72&v={$cptch_plugin_info["Version"]}&wp_v={$wp_version}/";
 		switch ( $plugin ) {
 			case 'contact-form-plugin/contact_form.php':
 			case 'contact-form-pro/contact_form_pro.php':

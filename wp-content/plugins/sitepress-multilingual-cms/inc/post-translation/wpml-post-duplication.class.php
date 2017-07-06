@@ -1,6 +1,6 @@
 <?php
 
-require_once 'wpml-wordpress-actions.class.php';
+require_once dirname( __FILE__ ) . '/wpml-wordpress-actions.class.php';
 
 /**
  * Class WPML_Post_Duplication
@@ -80,13 +80,13 @@ class WPML_Post_Duplication extends WPML_WPDB_And_SP_User {
 		                                                                    'post_' . $master_post->post_type );
 		$id                           = $this->save_duplicate( $post_array, $lang );
 
-		require_once ICL_PLUGIN_PATH . '/inc/cache.php';
+		require_once WPML_PLUGIN_PATH . '/inc/cache.php';
 		icl_cache_clear();
 
 		global $ICL_Pro_Translation;
 		/** @var WPML_Pro_Translation $ICL_Pro_Translation */
 		if ( $ICL_Pro_Translation ) {
-			$ICL_Pro_Translation->_content_fix_links_to_translated_content( $id, $lang );
+			$ICL_Pro_Translation->fix_links_to_translated_content( $id, $lang );
 		}
 		if ( ! is_wp_error( $id ) ) {
 			$ret = $this->run_wpml_actions( $master_post, $trid, $lang, $id, $post_array );

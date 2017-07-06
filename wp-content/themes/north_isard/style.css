@@ -642,6 +642,37 @@ a.member-all-button:hover {
 
 }    
 
+
+#lang_sel_list a, #lang_sel_list a:visited {
+    display: block;
+    font-size: 11px;
+    text-decoration: none !important;
+    color: #444444;
+    background: #fff;
+    line-height: 18px;
+    padding-left: 5px;
+	padding-right: 5px;
+}
+
+.wpml-ls-legacy-list-horizontal {
+    
+    padding: 0px;
+}
+
+#lang_sel_list a {
+    padding: 0 5px;
+}
+
+.wpml-ls-statics-shortcode_actions, .wpml-ls-statics-shortcode_actions .wpml-ls-sub-menu, .wpml-ls-statics-shortcode_actions a {
+    border:none;
+}
+
+#lang_sel_list a.lang_sel_sel {
+    background-color: #444;
+    color: white;
+}
+
+
 //#toggle-wrap { display: flex; }
 @media only screen and (min-width: 1000px) {
     //#page-content .page-layout-50{width:50%;padding-left:10px;}

@@ -84,7 +84,27 @@ body{
 .logged-in-as{clear:both;}
 .vc_custom_1455617357255 .content-right a:nth-child(2){display:none}
 
+#what-we-do .vc_custom_1447332582314.parallax{
+        background-image: url(/wp-content/uploads/2014/07/what-we-do-01.jpg) !important;
+}
 
+
+
+.vc_custom_1447332582314, #what-we-do .vc_row{
+        background-image: url(/wp-content/uploads/2014/07/what-we-do-01.jpg) !important;
+}
+
+#first_layer img.ls-preloaded, .ls-slide img{
+    filter: brightness(50%) !important;
+}
+
+
+
+
+/** MODIFICAT SAMIR***/
+.animated{
+	visibility:visible!important;
+}
 
 
 /**********************/
@@ -100,6 +120,8 @@ body{
 
 #lang_sel_list a{
     padding:3px;
+    top: -20px;
+    position: relative;
 }
 
 #lang_sel_list a.lang_sel_sel{
@@ -509,21 +531,25 @@ ul#w-filters [data-animation-delay~="500"] a.soft-bg-icons {
 
 #team .team-boxes{
     margin-top:25px;
+    overflow:auto;
 }
 
 #team .owl-wrapper, .team-boxes{
     width: 100%;
     max-width:100%;
-
+    /*
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    */
 }
 
 #team  .item{
-    max-width:270px;
+    max-width:290px;
     margin-bottom:20px;
     overflow: hidden;
+    height:335px;
+    float:left;
 }
 
 
@@ -641,37 +667,6 @@ a.member-all-button:hover {
     border:#b30101;	
 
 }    
-
-
-#lang_sel_list a, #lang_sel_list a:visited {
-    display: block;
-    font-size: 11px;
-    text-decoration: none !important;
-    color: #444444;
-    background: #fff;
-    line-height: 18px;
-    padding-left: 5px;
-	padding-right: 5px;
-}
-
-.wpml-ls-legacy-list-horizontal {
-    
-    padding: 0px;
-}
-
-#lang_sel_list a {
-    padding: 0 5px;
-}
-
-.wpml-ls-statics-shortcode_actions, .wpml-ls-statics-shortcode_actions .wpml-ls-sub-menu, .wpml-ls-statics-shortcode_actions a {
-    border:none;
-}
-
-#lang_sel_list a.lang_sel_sel {
-    background-color: #444;
-    color: white;
-}
-
 
 //#toggle-wrap { display: flex; }
 @media only screen and (min-width: 1000px) {

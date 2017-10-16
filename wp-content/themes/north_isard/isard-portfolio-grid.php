@@ -8,7 +8,9 @@
 $cats1 = 'instrumental-calibration,algorithm-development,geophysical-validation,toolboxes,dissemination-and-outreach';
 $cats2 = 'hydrology,cryosphere,ocean-and-coast,bathymetry,agriculture,air-quality,health';
 $cats3 = 'altimetry,passive-microwaves,SAR imaging ';
-
+$cats1_ca = 'calibratge-dinstrumental, desenvolupament-dalgoritmes, validacio-geofisica, caixes-eines, difusio-i-divulgacio';
+$cats2_ca = 'hydrologia, criosfera, ocea-i-costa, batimetria, agricultura, qualitat, salut';
+$cats3_ca = 'altimetria, microones-passives, imatges-sar';
 function isard_portfolio_grid($atts, $content = null) {
 	extract(shortcode_atts(array(
 		"filter" => 'simple_page_ordering_is_sortable',
@@ -62,9 +64,12 @@ function isard_portfolio_grid($atts, $content = null) {
                             global $cats1;
                             global $cats2;
                             global $cats3;
+                            global $cats1_ca;
+                            global $cats2_ca;
+                            global $cats3_ca;
                             
                             //print_r($cats3);die();
-	if($filter == "yes") isard_portfolio_filters($cats1, $cats2, $cats3);
+	if($filter == "yes") isard_portfolio_filters($cats1 . $cats1_ca, $cats2 . $cats2_ca, $cats3 . $cats3_ca);
 	echo '<div class="portfolio-items">';
 	wp_reset_postdata();
 	$paged = '';

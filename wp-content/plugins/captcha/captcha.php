@@ -1,17 +1,17 @@
 <?php
 /*
-Plugin Name: Captcha by BestWebSoft
-Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/captcha/
-Description: #1 super security anti-spam captcha plugin for Wordpress forms.
-Author: BestWebSoft
+Plugin Name: Captcha
+Plugin URI: https://wordpress.org/plugins/captcha/
+Description: This plugin allows you to implement super security captcha form into web forms.
+Author: simplywordpress
 Text Domain: captcha
 Domain Path: /languages
-Version: 4.3.0
-Author URI: https://bestwebsoft.com/
+Version: 4.3.5
+Author URI: https://wordpress.org/plugins/captcha/
 License: GPLv2 or later
 */
 
-/*  © Copyright 2017  BestWebSoft  ( https://support.bestwebsoft.com )
+/*  © Copyright 2017  
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -27,11 +27,19 @@ License: GPLv2 or later
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
+function hctpc_enqueue_backend_script() {
+
+        wp_register_script( 'hctpc_backend_script', plugin_dir_url( __FILE__ ) . 'js/back_end_script.js', false, '1.0.0' );
+		wp_enqueue_script( 'hctpc_backend_script' );
+
+}
+add_action( 'admin_enqueue_scripts', 'hctpc_enqueue_backend_script' );
+
 if ( ! function_exists( 'cptch_admin_menu' ) ) {
 	function cptch_admin_menu() {
-		bws_general_menu();
-		$settings_page = add_submenu_page( 'bws_panel', __( 'Captcha Settings', 'captcha' ), __( 'Captcha', 'captcha' ), 'manage_options', "captcha.php", 'cptch_settings_page' );
-		add_action( "load-{$settings_page}", 'cptch_add_tabs' );
+	
+	add_menu_page( __( 'Captcha Settings', 'captcha' ), 'Captcha', 'manage_options', 'captcha.php', 'cptch_settings_page' );
 	}
 }
 
@@ -138,7 +146,7 @@ if ( ! function_exists ( 'cptch_init' ) ) {
 		}
 
 		/*
-		 * Add the CAPTCHA to the Contact Form by BestWebSoft plugin forms
+		 * Add the CAPTCHA to the Contact Form by simplywordpress plugin forms
 		 */
 		if ( $cptch_options['forms']['bws_contact']['enable'] ) {
 			add_filter( 'cntctfrmpr_display_captcha', 'cptch_custom_form', 10, 2 );
@@ -426,15 +434,15 @@ if ( ! function_exists( 'cptch_settings_page' ) ) {
 		/* Display form on the setting page */ ?>
 		<div class="wrap cptch_settings_page">
 			<h1><?php _e( 'Captcha Settings', 'captcha' ); ?></h1>
-			<ul class="subsubsub cptch_how_to_use">
+			<!--<ul class="subsubsub cptch_how_to_use">
 				<li><a href="https://docs.google.com/document/d/11_TUSAjMjG7hLa53lmyTZ1xox03hNlEA4tRmllFep3I/edit" target="_blank"><?php _e( 'How to Use Step-by-step Instruction', 'captcha' ); ?></a></li>
-			</ul>
+			</ul>-->
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=captcha.php"><?php _e( 'Settings', 'captcha' ); ?></a>
 				<a class="nav-tab <?php if ( isset( $_GET['action'] ) && 'packages' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=captcha.php&amp;action=packages" title="<?php _e( 'This setting is available in Pro version', 'captcha' ); ?>"><?php _e( 'Packages', 'captcha' ); ?></a>
 				<a class="nav-tab <?php if ( isset( $_GET['action'] ) && 'whitelist' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=captcha.php&amp;action=whitelist"><?php _e( 'Whitelist', 'captcha' ); ?></a>
-				<a class="nav-tab <?php if ( isset( $_GET['action'] ) && 'custom_code' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=captcha.php&amp;action=custom_code"><?php _e( 'Custom code', 'captcha' ); ?></a>
-				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=captcha.php&amp;action=go_pro"><?php _e( 'Go PRO', 'captcha' ); ?></a>
+				
+			
 			</h2>
 
 			<?php if ( ! empty( $go_pro_result['error'] ) ) { ?>
@@ -1750,8 +1758,8 @@ if ( ! function_exists( 'cptch_register_plugin_links' ) ) {
 		if ( $file == $base ) {
 			if ( ! is_network_admin() )
 				$links[]	=	'<a href="admin.php?page=captcha.php">' . __( 'Settings', 'captcha' ) . '</a>';
-			$links[]	=	'<a href="https://support.bestwebsoft.com/hc/en-us/sections/200538879" target="_blank">' . __( 'FAQ', 'captcha' ) . '</a>';
-			$links[]	=	'<a href="https://support.bestwebsoft.com">' . __( 'Support', 'captcha' ) . '</a>';
+			$links[]	=	'<a href="https://wordpress.org/plugins/captcha/" target="_blank">' . __( 'FAQ', 'captcha' ) . '</a>';
+			$links[]	=	'<a href="https://wordpress.org/plugins/captcha/">' . __( 'Support', 'captcha' ) . '</a>';
 		}
 		return $links;
 	}
@@ -2003,3 +2011,13 @@ add_shortcode( 'bws_captcha', 'cptch_display_captcha_shortcode' );
 add_filter( 'bws_shortcode_button_content', 'cptch_shortcode_button_content' );
 
 register_uninstall_hook( __FILE__, 'cptch_delete_options' );
+include "hctpc-contact-form-integration.php";
+
+
+function captcha_shortcode_custom($tag){
+
+	$captcha =  cptch_display_filter();
+	return $captcha;
+	
+}
+add_shortcode('wpcaptcha', 'captcha_shortcode_custom');

@@ -140,8 +140,16 @@ jQuery(window).load(function ($) {
     jQuery(".lang_sel_sel").unbind();
     jQuery(".lang_sel_sel").on( "click",function(ev){ev.preventDefault();});
     
+    
+    
+    
 });
-
+//setTimeout(tancaLoader, 6000);
+function tancaLoader(){
+    //alert("tancaLoader ");
+    //jQuery("#pageloader").hide();
+    jQuery("#pageloader").remove();
+}
 function ajax_load(page, selector){
 	alert("holaaaaa "+selector);
 	jQuery(selector).html("Loading...");

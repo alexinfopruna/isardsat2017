@@ -700,14 +700,14 @@ ul.list-horizontal li i{
 
 /* Page Loader */
 
-#pageloader {
+/*#pageloader {
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top:0;
 	background-color: white;
 	z-index: 99999;
-}
+}*/
 
 .loader-item h2{
 	color:#ccc;

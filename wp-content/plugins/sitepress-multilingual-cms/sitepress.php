@@ -2,10 +2,10 @@
 /*
 Plugin Name: WPML Multilingual CMS
 Plugin URI: https://wpml.org/
-Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-3-7-1/">WPML 3.7.1 release notes</a>
+Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-3-8-1/">WPML 3.8.1 release notes</a>
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com/
-Version: 3.7.1
+Version: 3.8.1
 Plugin Slug: sitepress-multilingual-cms
 */
 
@@ -16,7 +16,7 @@ if ( defined( 'ICL_SITEPRESS_VERSION' ) || ( (bool) get_option( '_wpml_inactive'
 		return;
 }
 
-define( 'ICL_SITEPRESS_VERSION', '3.7.1' );
+define( 'ICL_SITEPRESS_VERSION', '3.8.1' );
 
 // Do not uncomment the following line!
 // If you need to use this constant, use it in the wp-config.php file
@@ -116,9 +116,6 @@ if(defined('WPML_UPGRADE_NOT_POSSIBLE') && WPML_UPGRADE_NOT_POSSIBLE) return;
 if(is_admin() || defined('XMLRPC_REQUEST')){
     require WPML_PLUGIN_PATH . '/lib/icl_api.php';
     require WPML_PLUGIN_PATH . '/inc/utilities/xml2array.php';
-    if ( !defined ( 'DOING_AJAX' ) ) {
-        require WPML_PLUGIN_PATH . '/menu/wpml-admin-scripts-setup.class.php';
-    }
 }elseif(preg_match('#wp-comments-post\.php$#', $_SERVER['REQUEST_URI'])){
 	require_once WPML_PLUGIN_PATH . '/inc/translation-management/translation-management.class.php';
 }
@@ -149,12 +146,20 @@ $wpml_cache_factory = new WPML_Cache_Factory();
 
 $sitepress = new SitePress();
 
+
+$action_filter_loader = new WPML_Action_Filter_Loader();
+
 if ( $sitepress->is_setup_complete() ) {
 	$actions = array(
 		'WPML_Copy_Once_Custom_Field_Factory',
 		'WPML_Adjacent_Links_Hooks_Factory',
+		'WPML_Widgets_Support_Factory',
+		'WPML_End_User_Loader_Factory',
+		'WPML_End_User_Confirmation_Factory',
+		'WPML_Admin_Resources_Hooks_Factory',
+		'WPML_Themes_Plugin_Localization_UI_Hooks_Factory',
+		'WPML_Theme_Plugin_Localization_Options_Ajax_Factory',
 	);
-	$action_filter_loader = new WPML_Action_Filter_Loader();
 	$action_filter_loader->load( $actions );
 }
 
@@ -173,10 +178,18 @@ wpml_load_query_filter ( icl_get_setting ( 'setup_complete' ) );
 $wpml_canonicals = new WPML_Canonicals( $sitepress );
 $wpml_canonicals_hooks = new WPML_Canonicals_Hooks( $sitepress, $wpml_url_converter );
 $wpml_canonicals_hooks->add_hooks();
-$wpml_url_filters = new WPML_URL_Filters( $wpml_post_translations, $wpml_url_converter, $wpml_canonicals, $sitepress );
+$wpml_url_filters = new WPML_URL_Filters( $wpml_post_translations, $wpml_url_converter, $wpml_canonicals, $sitepress,
+	new WPML_Debug_BackTrace( $wpml_wp_api->phpversion(), 8 ) );
 wpml_load_request_handler( is_admin(),
                            $wpml_language_resolution->get_active_language_codes(),
                            $sitepress->get_default_language() );
+
+$tf_settings_read = new WPML_TF_Settings_Read();
+/** @var WPML_TF_Settings $tf_settings */
+$tf_settings = $tf_settings_read->get( 'WPML_TF_Settings' );
+$translation_feedback_module = new WPML_TF_Module( $action_filter_loader, $tf_settings );
+$translation_feedback_module->run();
+
 require WPML_PLUGIN_PATH . '/inc/url-handling/wpml-slug-filter.class.php';
 $wpml_slug_filter = new WPML_Slug_Filter( $wpdb, $sitepress, $wpml_post_translations );
 /** @var array $sitepress_settings */
@@ -222,6 +235,7 @@ function wpml_init_language_switcher() {
 
 	$wpml_language_switcher = new WPML_Language_Switcher( $sitepress );
 	$wpml_language_switcher->init_hooks();
+
 }
 add_action( 'wpml_loaded', 'wpml_init_language_switcher' );
 
@@ -245,9 +259,10 @@ function wpml_upgrade() {
 	global $wpdb, $sitepress;
 	$factory = new WPML_Upgrade_Command_Factory( $wpdb, $sitepress );
 
-	$command = new WPML_Upgrade_Command_Definition( 'WPML_Upgrade_Localization_Files', array( $sitepress ), array( 'admin' ) );
-
-	$commands[] = $command;
+	$commands = array(
+		new WPML_Upgrade_Command_Definition( 'WPML_Upgrade_Localization_Files', array( $sitepress ), array( 'admin' ) ),
+		new WPML_Upgrade_Command_Definition( 'WPML_Upgrade_Fix_Non_Admin_With_Admin_Cap', array(), array( 'admin' ) ),
+	);
 
 	$upgrade = new WPML_Upgrade( $commands, $sitepress, $factory );
 	$upgrade->run();
@@ -288,3 +303,14 @@ function wpml_init_language_cookie_settings() {
 }
 
 add_action( 'admin_init', 'wpml_init_language_cookie_settings' );
+
+function wpml_check_php_version() {
+	if ( 'index.php' !== $GLOBALS['pagenow'] && current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	add_filter( 'whip_hosting_page_url_wordpress', '__return_true' );
+	whip_wp_check_versions( array( 'php' => '>=5.3', ) );
+}
+
+add_action( 'plugins_loaded', 'wpml_check_php_version' );

@@ -98,14 +98,8 @@ if ( ! function_exists( 'bws_plugin_reviews_block' ) ) {
 					<span class="dashicons dashicons-star-filled"></span>
 				</a>
 			</div>
-			<div class="bws-plugin-reviews-support">
-				<?php _e( 'Need help?', 'bestwebsoft' ); ?>
-				<a href="https://support.bestwebsoft.com"><?php _e( 'Visit Help Center', 'bestwebsoft' ); ?></a>
-			</div>
-			<div class="bws-plugin-reviews-donate">
-				<?php _e( 'Want to support the plugin?', 'bestwebsoft' ); ?>
-				<a href="https://bestwebsoft.com/donate/"><?php _e( 'Donate', 'bestwebsoft' ); ?></a>
-			</div>
+			
+		
 		</div>
 	<?php }
 }

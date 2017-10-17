@@ -319,9 +319,9 @@ function vntd_fonts() {
 	if($font_body != $font_heading) {
 		wp_enqueue_style('google-font-body', 'http://fonts.googleapis.com/css?family='.str_replace(' ','+',$font_body));
 	}	
-	wp_enqueue_style('google-font-heading', 'http://fonts.googleapis.com/css?family='.str_replace(' ','+',$font_heading).$font_heading_weight);	
+	//wp_enqueue_style('google-font-heading', 'http://fonts.googleapis.com/css?family='.str_replace(' ','+',$font_heading).$font_heading_weight);	
 	
-	wp_enqueue_style('google-font-third', 'http://fonts.googleapis.com/css?family=Indie+Flower');
+	//wp_enqueue_style('google-font-third', 'http://fonts.googleapis.com/css?family=Indie+Flower');
 
 }
 add_action('wp_enqueue_scripts', 'vntd_fonts');

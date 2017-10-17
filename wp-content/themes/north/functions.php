@@ -77,8 +77,8 @@ function vntd_custom() {
 		wp_register_script('parallax', get_template_directory_uri() . '/js/jquery.parallax-1.1.3.js', array('jquery'));
 		wp_register_script('waypoints', get_template_directory_uri() . '/js/waypoints.min.js', array('jquery'));
 		wp_register_script('superslides', get_template_directory_uri() . '/js/jquery.superslides.js', array('jquery'));
-		wp_register_script('google-map', get_template_directory_uri() . '/js/google-map.js', array('jquery'));
-		wp_register_script('google-map-sensor', 'http://maps.google.com/maps/api/js?sensor=false', array('jquery'));
+		//wp_register_script('google-map', get_template_directory_uri() . '/js/google-map.js', array('jquery'));
+		//wp_register_script('google-map-sensor', 'http://maps.google.com/maps/api/js?sensor=false', array('jquery'));
 		wp_register_script('magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array('jquery'));
 		wp_register_script('rainyday', get_template_directory_uri() . '/js/rainyday.min.js', array('jquery'));
 		wp_register_script('vimeoBg', get_template_directory_uri() . '/js/fullscreen_background.js', array('jquery'));

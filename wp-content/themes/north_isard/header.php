@@ -40,6 +40,8 @@
                 height:289px;
             }
         </style>
+        <link rel='stylesheet' id='google-font-heading-css'  href='http://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500&#038;ver=4.8.1' type='text/css' media='all' />
+        
     </head>
 
     <body <?php body_class(vntd_body_skin()); ?>>

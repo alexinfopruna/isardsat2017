@@ -59,7 +59,7 @@ if($smof_data["vntd_footer_style"] == 'classic') {
 	</div>
 	<?php } ?>
 	
-                            
+<!--                            
                                                         <div style="text-align:right;background-color: #9fa09b">
 <img src="/wp-content/uploads/2017/10/mapa-web2126.jpg" usemap="#image-map" id="mapa-jpg">
                             </div>
@@ -70,7 +70,7 @@ if($smof_data["vntd_footer_style"] == 'classic') {
     <area target="_self" alt="" title="Polska" href="http://www.isardsat.pl" shape="poly" coords="652,16,624,41,657,94,681,45"  id="area-polska" />
    
 </map>
-
+-->
                             
 	<!-- Footer -->
 	<footer class="footer <?php echo $footer_color_class.' '.$footer_style; ?> t-center">

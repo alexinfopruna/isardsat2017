@@ -27,17 +27,16 @@ function mytheme_custom_scripts() {
   
   
   //wp_enqueue_script('jquery-masonry', '', array('jquery'), true);
-
+  wp_enqueue_script('wpex-global', WPEX_JS_DIR . '/global.js', false, '1.0', true);
   
   wp_deregister_script('jquery-masonry');
-  wp_enqueue_script('jquery-masonry', '//cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.js', array('jquery'), '1.8.3', true);
+  wp_enqueue_script('jquery-masonry', '//cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.js', array('jquery'), null, true);
 
- wp_deregister_script('jquery-imagemap');
+wp_deregister_script('jquery-imagemap');
   wp_enqueue_script('jquery-imagemap', '//cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.3/js/imageMapResizer.min.js', array('jquery'), null,true);
-  
 
 wp_deregister_script('jquery');
-wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3',true);
+wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3', true);
 
 
   wp_register_style('isard-north-responsive', get_stylesheet_directory_uri() . '/css/responsive.css');
@@ -46,9 +45,11 @@ wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery
   
   wp_enqueue_script( 'ajax_experiencia', get_stylesheet_directory_uri() . '/js/ajax_home_experiencia.js', array('jquery'), '1.0', true );
 wp_localize_script( 'ajax_experiencia', 'ajaxexperiencia', array(
-	'ajaxurl' =>  get_stylesheet_directory_uri().'/ajaxexperiencia.php' ));
+	'ajaxurl' =>  get_stylesheet_directory_uri().'/ajaxexperiencia.php' 
+
+
+));
   
-  wp_enqueue_script('wpex-global', WPEX_JS_DIR . '/global.js', false, '1.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'mytheme_custom_scripts', 15);

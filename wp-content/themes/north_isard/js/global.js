@@ -194,8 +194,6 @@ jQuery(".vntd-team-carousel").height("695");
             WPEXMasonry();
         });
     }
-    
             
-               alert("jjj");
       $("map").imageMapResize();
 });

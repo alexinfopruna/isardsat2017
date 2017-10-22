@@ -1,4 +1,6 @@
 jQuery(function ($) {
+    
+   
   //  $(".team-boxes").attr("id","team-boxesz")
      jQuery("#pageloader").hide();
      jQuery(".vntd-team-carousel").css('height','auto');
@@ -196,6 +198,7 @@ jQuery(function ($) {
                 $(".vntd-team-carousel").css("height",h);
             }
         });
+        
     });
 
 
@@ -203,7 +206,7 @@ jQuery(function ($) {
         WPEXMasonry();
     });
 
-
+    
     $(window).resize(function () {
         WPEXMasonry();
     });
@@ -217,6 +220,6 @@ jQuery(function ($) {
             WPEXMasonry();
         });
     }
-
-
+    
+    
 });

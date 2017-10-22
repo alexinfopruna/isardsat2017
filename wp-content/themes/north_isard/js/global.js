@@ -7,9 +7,7 @@ jQuery(function ($) {
     var hmin=$(".team-boxes").height() + 150;
 jQuery(".vntd-team-carousel").height("695");
    
-  // alert("...."+hmin);
     jQuery(".team-boxes").on('initialize.owl.carousel', function( event ){
-   
 });
     
     // Scroll back to top	
@@ -46,7 +44,6 @@ jQuery(".vntd-team-carousel").height("695");
     //Toggle sidebar
     $('a#toggle-btn').click(function () {
         $('div#toggle-wrap').slideToggle();
-        //$('div#toggle-wrap').toggle("slow");
         $(this).find('i').toggleClass('icon-reorder icon-remove');
     })
 
@@ -74,21 +71,16 @@ jQuery(".vntd-team-carousel").height("695");
 
 
            if ($windowWidth > 959 && $windowWidth <= 1024) {
-               
-                //var $colWidth = ($('.container-right').width() - 40) / 3;
                 var $colWidth = ($windowWidth - 550) / 2;
-               //  alert(1111+"*"+$colWidth);
                 $('.grid').masonry({
                     itemSelector: '.loop-entry',
                     gutterWidth: 20,
                     columnWidth: $colWidth,
                     isAnimated: true,
-                  //  isFitWidth: true
                 });
                 $('.loop-entry').width($colWidth);
 
             } else if ($windowWidth > 700 && $windowWidth <= 959) {
-              //  alert(2222);
                 $colWidth = ($windowWidth - 120) / 3;
                 $('.grid').masonry({
                     itemSelector: '.loop-entry',
@@ -101,7 +93,6 @@ jQuery(".vntd-team-carousel").height("695");
 
 
             } else if ($windowWidth > 400 && $windowWidth < 700) {
-               // alert(3333);
                 $colWidth = ($windowWidth - 100) / 2;
                 $('.grid').masonry({
                     itemSelector: '.loop-entry',
@@ -114,7 +105,6 @@ jQuery(".vntd-team-carousel").height("695");
 
             } else if ($windowWidth > 1024 && $windowWidth < 1300) {
             $colWidth = ($windowWidth - 590) / 3;
-           // alert($gridWidth+" / "+$colWidth);
             $('.grid').masonry({
                     itemSelector: '.loop-entry',
                     gutterWidth : $gutter,
@@ -149,11 +139,6 @@ jQuery(".vntd-team-carousel").height("695");
                 $('.loop-entry').width($colWidth);
         }
             else {
-              //  var $multi = parseInt(($gridWidth  ) / 200);
-               // var $multi = (($gridWidth  ) / 250);
-             //   var $colWidth = ($gridWidth ) / $multi ;
-             //   var $gutter = ($gridWidth - $multi * 250 ) / $multi;
-                //alert($gridWidth+" / "+$multi+" / "+$colWidth+ " gut "+ $gutter);
                 var $colWidth = ($windowWidth - $cols) / 7;
                 $colWidth = 240;
                 $('.grid').masonry({
@@ -169,19 +154,13 @@ jQuery(".vntd-team-carousel").height("695");
     }
 
     $(document).ready(function () {
-
         WPEXBackTopScroll();
         WPEXCommentScroll();
         WPEXResponsiveNav();
         WPEXMasonry();
         
-     // jQuery(".team-boxes").owlCarousel();
-      //jQuery(".team-boxes").data('owlCarousel').destroy();
-      //jQuery(".team-boxes").data('owlCarousel').reinit();
-        
         $(".member-all-button, #team .filter-group-link ").click(function(){
             var h;
-            //h=$(".owl-wrapper-outer ").height() ;
             h=695;
             //alert(h +" + "+ hmin);
             $(".vntd-team-carousel").toggleClass("team-all");
@@ -189,10 +168,6 @@ jQuery(".vntd-team-carousel").height("695");
             $(".member-all-button").toggleClass("team-all");
             
             if ($(".vntd-team-carousel").hasClass("team-all")){
-                //h=$(".owl-wrapper-outer ").height();
-                //h=$(".team-boxes ").height();
-                //h= $(".vntd-team-carousel").height();
-                //h+=150;
                 $(".vntd-team-carousel").css("height", hmin);
             }else {
                 $(".vntd-team-carousel").css("height",h);
@@ -219,6 +194,8 @@ jQuery(".vntd-team-carousel").height("695");
             WPEXMasonry();
         });
     }
-
-
+    
+            
+               alert("jjj");
+      $("map").imageMapResize();
 });

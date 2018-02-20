@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/isardsat/wp-content/plugins/js_composer/include/classes/core/class-vc-base.php</file>
-            <file>file:/var/www/isardsat/wp-content/themes/north_isard/js/global.js</file>
-            <file>file:/var/www/isardsat/wp-content/themes/north_isard/style.css</file>
-            <file>file:/var/www/isardsat/wp-content/themes/north_isard/functions.php</file>
             <file>file:/var/www/isardsat/wp-content/themes/north_isard/footer.php</file>
-            <file>file:/var/www/isardsat/wp-content/themes/north/style.css</file>
             <file>file:/var/www/isardsat/wp-content/plugins/js_composer/include/classes/settings/class-vc-settings.php</file>
+            <file>file:/var/www/isardsat/wp-content/themes/north_isard/js/global.js</file>
+            <file>file:/var/www/isardsat/wp-content/themes/north/index.php</file>
+            <file>file:/var/www/isardsat/wp-content/themes/north_isard/page.php</file>
+            <file>file:/var/www/isardsat/wp-content/plugins/js_composer/include/classes/core/class-vc-base.php</file>
+            <file>file:/var/www/isardsat/wp-content/themes/north_isard/functions.php</file>
+            <file>file:/var/www/isardsat/wp-content/themes/north/functions.php</file>
         </group>
     </open-files>
 </project-private>

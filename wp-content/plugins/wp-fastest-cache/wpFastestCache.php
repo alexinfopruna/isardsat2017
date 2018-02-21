@@ -3,7 +3,7 @@
 Plugin Name: WP Fastest Cache
 Plugin URI: http://wordpress.org/plugins/wp-fastest-cache/
 Description: The simplest and fastest WP Cache system
-Version: 0.8.7.3
+Version: 0.8.7.7
 Author: Emre Vona
 Author URI: http://tr.linkedin.com/in/emrevona
 Text Domain: wp-fastest-cache
@@ -272,13 +272,15 @@ GNU General Public License for more details.
 		}
 
 		public function clear_cache_after_woocommerce_checkout_order_processed($order_id = false){
-			if($order_id){
-				$order = wc_get_order($order_id);
+			if(function_exists("wc_get_order")){
+				if($order_id){
+					$order = wc_get_order($order_id);
 
-				if($order){
-					foreach($order->get_items() as $item_key => $item_values ){
-						if(method_exists($item_values, 'get_product_id')){
-							$this->singleDeleteCache(false, $item_values->get_product_id());
+					if($order){
+						foreach($order->get_items() as $item_key => $item_values ){
+							if(method_exists($item_values, 'get_product_id')){
+								$this->singleDeleteCache(false, $item_values->get_product_id());
+							}
 						}
 					}
 				}
@@ -312,24 +314,20 @@ GNU General Public License for more details.
                             );
 
 
-            $element = "SELECT * FROM `$wpdb->posts` WHERE post_type = 'revision';";
-            $statics["post_revisions"] = $wpdb->query( $element );
-            $statics["all_warnings"] = $statics["all_warnings"] + $wpdb->query( $element );
+            $statics["post_revisions"] = $wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE post_type = 'revision';");
+            $statics["all_warnings"] = $statics["all_warnings"] + $statics["post_revisions"];
 
-            $element = "SELECT * FROM `$wpdb->posts` WHERE post_status = 'trash';";
-            $statics["trashed_contents"] = $wpdb->query( $element );
-            $statics["all_warnings"] = $statics["all_warnings"] + $wpdb->query( $element );
+            $statics["trashed_contents"] = $wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->posts` WHERE post_status = 'trash';");
+            $statics["all_warnings"] = $statics["all_warnings"] + $statics["trashed_contents"];
 
-            $element = "SELECT * FROM `$wpdb->comments` WHERE comment_approved = 'spam' OR comment_approved = 'trash' ;";
-            $statics["trashed_spam_comments"] = $wpdb->query( $element );
-            $statics["all_warnings"] = $statics["all_warnings"] + $wpdb->query( $element );
+            $statics["trashed_spam_comments"] = $wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->comments` WHERE comment_approved = 'spam' OR comment_approved = 'trash' ;");
+            $statics["all_warnings"] = $statics["all_warnings"] + $statics["trashed_spam_comments"];
 
-            $element = "SELECT * FROM `$wpdb->comments` WHERE comment_type = 'trackback' OR comment_type = 'pingback' ;";
-            $statics["trackback_pingback"] = $wpdb->query( $element );
-            $statics["all_warnings"] = $statics["all_warnings"] + $wpdb->query( $element );
+            $statics["trackback_pingback"] = $wpdb->get_var("SELECT COUNT(*) FROM `$wpdb->comments` WHERE comment_type = 'trackback' OR comment_type = 'pingback' ;");
+            $statics["all_warnings"] = $statics["all_warnings"] + $statics["trackback_pingback"];
 
-            $element = "SELECT * FROM `$wpdb->options` WHERE option_name LIKE '%\_transient\_%' ;";
-            $statics["transient_options"] = $wpdb->query( $element ) > 20 ? $wpdb->query( $element ) : 0;
+            $element = "SELECT COUNT(*) FROM `$wpdb->options` WHERE option_name LIKE '%\_transient\_%' ;";
+            $statics["transient_options"] = $wpdb->get_var( $element ) > 20 ? $wpdb->get_var( $element ) : 0;
             $statics["all_warnings"] = $statics["all_warnings"] + $statics["transient_options"];
 
             die(json_encode($statics));
@@ -409,6 +407,10 @@ GNU General Public License for more details.
 						}
 
 						if(($response_code == 401) && (preg_match("/res\.cloudinary\.com/i", $_GET["url"]))){
+							$res = array("success" => true);
+						}
+
+						if(($response_code == 403) && (preg_match("/stackpathdns\.com/i", $_GET["url"]))){
 							$res = array("success" => true);
 						}
 					}
@@ -934,6 +936,8 @@ GNU General Public License for more details.
 			$to_clear_parents = true;
 
 			if($comment_id){
+				$comment_id = intval($comment_id);
+				
 				$comment = get_comment($comment_id);
 				
 				if($comment && $comment->comment_post_ID){
@@ -942,6 +946,8 @@ GNU General Public License for more details.
 			}
 
 			if($post_id){
+				$post_id = intval($post_id);
+
 				$permalink = get_permalink($post_id);
 
 				$permalink = urldecode(get_permalink($post_id));
@@ -951,8 +957,18 @@ GNU General Public License for more details.
 				$permalink = preg_replace("/__trashed$/", "", $permalink);
 
 				if(preg_match("/https?:\/\/[^\/]+\/(.+)/", $permalink, $out)){
-					$path = $this->getWpContentDir()."/cache/all/".$out[1];
-					$mobile_path = $this->getWpContentDir()."/cache/wpfc-mobile-cache/".$out[1];
+
+					//WPML language switch
+					//https://wpml.org/forums/topic/wpml-language-switch-wp-fastest-cache-issue/
+					if($this->isPluginActive('sitepress-multilingual-cms/sitepress.php')){
+						$current_language = apply_filters('wpml_current_language', false);
+
+						$path = $this->getWpContentDir()."/cache/all/".$current_language."/".$out[1];
+						$mobile_path = $this->getWpContentDir()."/cache/wpfc-mobile-cache/".$current_language."/".$out[1];
+					}else{
+						$path = $this->getWpContentDir()."/cache/all/".$out[1];
+						$mobile_path = $this->getWpContentDir()."/cache/wpfc-mobile-cache/".$out[1];
+					}
 
 					if(is_dir($path)){
 						if($this->isPluginActive("wp-fastest-cache-premium/wpFastestCachePremium.php")){
@@ -999,6 +1015,10 @@ GNU General Public License for more details.
 
 		public function delete_cache_of_term($term_id){
 			$term = get_term($term_id);
+
+			if(!$term || is_wp_error($term)){
+				return false;
+			}
 
 			if(preg_match("/cat|tag/", $term->taxonomy)){
 				$url = get_term_link($term->term_id, $term->taxonomy);
@@ -1160,7 +1180,9 @@ GNU General Public License for more details.
 					preg_match("/wpFastestCachePreload_(.+)/", $key, $type);
 
 					if(!empty($type)){
-						if($type[1] == "number"){
+						if($type[1] == "restart"){
+							//to need to remove "restart" value
+						}else if($type[1] == "number"){
 							$preload_arr[$type[1]] = $value; 
 						}else{
 							$preload_arr[$type[1]] = 0; 
@@ -1243,7 +1265,7 @@ GNU General Public License for more details.
 				}
 
 				// POST
-				if($number > 0 && $pre_load->post > -1){
+				if($number > 0 && isset($pre_load->post) && $pre_load->post > -1){
 		    		// $recent_posts = wp_get_recent_posts(array(
 								// 			'numberposts' => $number,
 								// 		    'offset' => $pre_load->post,
@@ -1297,7 +1319,7 @@ GNU General Public License for more details.
 				}
 
 				// PAGE
-				if($number > 0 && $pre_load->page > -1){
+				if($number > 0 && isset($pre_load->page) && $pre_load->page > -1){
 					$pages = get_pages(array(
 							'sort_order' => 'DESC',
 							'sort_column' => 'ID',
@@ -1329,7 +1351,7 @@ GNU General Public License for more details.
 				}
 
 				// CATEGORY
-				if($number > 0 && $pre_load->category > -1){
+				if($number > 0 && isset($pre_load->category) && $pre_load->category > -1){
 					// $categories = get_terms(array(
 					// 							'taxonomy'          => array('category', 'product_cat'),
 					// 						    'orderby'           => 'id', 
@@ -1449,9 +1471,21 @@ GNU General Public License for more details.
 		    		// 	}
 		    		// }
 				}else{
-					echo "Completed";
-					
-					wp_clear_scheduled_hook("wp_fastest_cache_Preload");
+					if(isset($this->options->wpFastestCachePreload_restart)){
+						foreach ($pre_load as $pre_load_key => &$pre_load_value) {
+							if($pre_load_key != "number"){
+								$pre_load_value = 0;
+							}
+						}
+
+						update_option("WpFastestCachePreLoad", json_encode($pre_load));
+
+						echo "Preload Restarted";
+					}else{
+						echo "Completed";
+						
+						wp_clear_scheduled_hook("wp_fastest_cache_Preload");
+					}
 				}
 			}
 
@@ -1461,7 +1495,8 @@ GNU General Public License for more details.
 		}
 
 		public function wpfc_remote_get($url, $user_agent){
-			$response = wp_remote_get($url, array('timeout' => 10, 'sslverify' => false, 'headers' => array("cache-control" => array("no-store, no-cache, must-revalidate", "post-check=0, pre-check=0"),'user-agent' => $user_agent)));
+			//$response = wp_remote_get($url, array('timeout' => 10, 'sslverify' => false, 'headers' => array("cache-control" => array("no-store, no-cache, must-revalidate", "post-check=0, pre-check=0"),'user-agent' => $user_agent)));
+			$response = wp_remote_get($url, array('user-agent' => $user_agent, 'timeout' => 10, 'sslverify' => false, 'headers' => array("cache-control" => "no-store, no-cache, must-revalidate, post-check=0, pre-check=0")));
 
 			if (!$response || is_wp_error($response)){
 				echo $response->get_error_message()." - ";
